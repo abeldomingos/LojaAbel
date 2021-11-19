@@ -126,7 +126,7 @@ public class Cliente {
               String morada = rs.getString("morada");
               String idade = rs.getString("idade");
               System.out.println("-------------------------");
-              System.out.println("resultado da pesquisa");
+              System.out.println("resultado da pesquisas");
               System.out.println("id:"+id); 
               System.out.println("nome:"+nome);
               System.out.println("morada :"+morada);
