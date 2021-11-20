@@ -138,10 +138,8 @@ public class Telass extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtoncadastrarActionPerformed
 
     private void jButtonexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonexcluirActionPerformed
-        // TODO add your handling code here:
-       
-        
-       
+       Cliente clientesalvar  = new Cliente(Integer.parseInt(jTextFieldid_cliente1.getText()));
+       clientesalvar.excluir(clientesalvar);
     }//GEN-LAST:event_jButtonexcluirActionPerformed
 
     private void jTextFieldid_idadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldid_idadeActionPerformed

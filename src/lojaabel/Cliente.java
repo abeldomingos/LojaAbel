@@ -85,7 +85,7 @@ public class Cliente {
   }
   
   
-  public void excluir(Cliente cliente) throws SQLException{
+  public void excluir(Cliente cliente) {
        String sql01 = "delete *from cliente where id_cliente =?";
       try {
           pst= conexao.prepareStatement(sql01);
