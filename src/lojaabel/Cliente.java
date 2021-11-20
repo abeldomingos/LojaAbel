@@ -4,6 +4,7 @@ package lojaabel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Cliente {
@@ -23,6 +24,13 @@ public class Cliente {
          conexao = Conexao.conector();
     }
 
+    public Cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+
+    
+    
     public int getId_cliente() {
         return id_cliente;
     }
@@ -76,18 +84,27 @@ public class Cliente {
       
   }
   
-  public void excluir(Cliente cliente){
-       String sql = "delete from cliente where id_cliente = ?";
+  
+  public void excluir(Cliente cliente) throws SQLException{
+       String sql01 = "delete *from cliente where id_cliente =?";
       try {
-          pst= conexao.prepareStatement(sql);
-          pst.setInt(1, cliente.getId_cliente());
+          pst= conexao.prepareStatement(sql01);
+          pst.setString(1, Integer.toString(cliente.id_cliente));
           pst.executeUpdate();
-         System.out.println("Excluido com Sucesso");
-          
+          int result = pst.executeUpdate();
+          if (result >0) {
+                 JOptionPane.showMessageDialog(null, "Atençao","Sucess",JOptionPane.OK_OPTION);
 
+          } else {
+              System.out.println("não executei a instrução");
+          }
           
       } catch (Exception erro) {
+          int resulta = pst.executeUpdate();
+          System.out.println("result"+resulta);
               JOptionPane.showMessageDialog(null, "Falha Ao Excluir Dados\n"+erro);;
+              
+              System.out.println("erro"+erro);
       }
       
   
@@ -138,6 +155,7 @@ public class Cliente {
       } catch (Exception erro) {
            JOptionPane.showMessageDialog(null, "Falha Ao Pesquisar Dados\n"+erro);
       }
+      
   
   }
   
