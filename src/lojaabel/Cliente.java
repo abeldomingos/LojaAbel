@@ -16,6 +16,7 @@ public class Cliente {
    Connection conexao = null;
    PreparedStatement pst =null;
    ResultSet rs = null;
+    
    
     public Cliente(int id_cliente, String nome, String morada, int idade) {
         this.id_cliente = id_cliente;
@@ -23,6 +24,7 @@ public class Cliente {
         this.morada = morada;
         this.idade = idade;
          conexao = Conexao.conector();
+        
         
     }
 
@@ -136,6 +138,7 @@ public class Cliente {
   }
   
   public Cliente pesquisar(Cliente cliente){
+     
        String sql = "select *from cliente where id_cliente =?";
       
       try {

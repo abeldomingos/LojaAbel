@@ -195,7 +195,7 @@ public class Telass extends javax.swing.JFrame {
         if (modelo ==null) {
             System.out.println("modelo vazio");
         } else {
-            this.jTextFieldnome2.setText(modelo.getNome());
+           this.jTextFieldnome2.setText(modelo.getNome());
            this.jTextFieldid_idade.setText(Integer.toString(modelo.getIdade()));
            this.jTextFieldmorada.setText((modelo.getMorada()));
         }
@@ -203,6 +203,38 @@ public class Telass extends javax.swing.JFrame {
        
       
     }//GEN-LAST:event_jButtonpesquisarActionPerformed
+
+    public static JTextField getjTextFieldid_cliente1() {
+        return jTextFieldid_cliente1;
+    }
+
+    public static void setjTextFieldid_cliente1(JTextField jTextFieldid_cliente1) {
+        Telass.jTextFieldid_cliente1 = jTextFieldid_cliente1;
+    }
+
+    public JTextField getjTextFieldid_idade() {
+        return jTextFieldid_idade;
+    }
+
+    public void setjTextFieldid_idade(JTextField jTextFieldid_idade) {
+        this.jTextFieldid_idade = jTextFieldid_idade;
+    }
+
+    public static JTextField getjTextFieldmorada() {
+        return jTextFieldmorada;
+    }
+
+    public static void setjTextFieldmorada(JTextField jTextFieldmorada) {
+        Telass.jTextFieldmorada = jTextFieldmorada;
+    }
+
+    public static JTextField getjTextFieldnome2() {
+        return jTextFieldnome2;
+    }
+
+    public static void setjTextFieldnome2(JTextField jTextFieldnome2) {
+        Telass.jTextFieldnome2 = jTextFieldnome2;
+    }
 
     
     /**
@@ -253,8 +285,8 @@ public class Telass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelmorada;
     private javax.swing.JLabel jLabelnome;
     public static javax.swing.JTextField jTextFieldid_cliente1;
-    private javax.swing.JTextField jTextFieldid_idade;
-    private javax.swing.JTextField jTextFieldmorada;
+    public javax.swing.JTextField jTextFieldid_idade;
+    public static javax.swing.JTextField jTextFieldmorada;
     public static javax.swing.JTextField jTextFieldnome2;
     // End of variables declaration//GEN-END:variables
 }
