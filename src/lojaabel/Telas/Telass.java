@@ -180,7 +180,7 @@ public class Telass extends javax.swing.JFrame {
 
     private void jButtoneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoneditarActionPerformed
             // TODO add your handling code here:
-            Cliente cliente  = new Cliente(Integer.parseInt(jTextFieldid_cliente1.getText()));
+           Cliente  cliente =  new Cliente(Integer.parseInt(jTextFieldid_cliente1.getText()), jTextFieldnome2.getText(), jTextFieldmorada.getText(), Integer.parseInt(jTextFieldid_idade.getText()));
             cliente.editar(cliente);
             
             // String sql = "update cliente set nome=?, morada=?, idade=? where id_cliente = ?";

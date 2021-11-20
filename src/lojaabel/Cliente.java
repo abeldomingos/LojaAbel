@@ -112,27 +112,23 @@ public class Cliente {
   }
   
   public void editar(Cliente cliente){
-      String sql = "update cliente set nome=?, morada=?, idade=? where id_cliente = ?";
-      
+      String sql = "update cliente set nome=?, morada=? ,idade=? where id_cliente = ?";      
       
       try {
            pst= conexao.prepareStatement(sql);
            pst.setString(1, cliente.getNome());
            pst.setString(2, cliente.getMorada());
            pst.setInt(3, cliente.getIdade());
-           pst.setInt(4, cliente.getId_cliente());
-           pst.executeUpdate();
-           
-           if (rs.next()) {
-                System.out.println("Alterado Com Sucesso");
-              
-          } else {
-               System.out.println("Erro ao Alterar");
-          }
-        
+           pst.setInt(4, cliente.getId_cliente());       
+           int result = pst.executeUpdate();
+          if (result >0) {
+               JOptionPane.showMessageDialog(null, "Atençao","Sucess",JOptionPane.OK_OPTION);
+
+          }      
           
       } catch (Exception erro) {
           JOptionPane.showMessageDialog(null, "Falha Ao Alterar Dados\n"+erro);
+          System.out.println("erro"+erro);
       }
   
   }
