@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import lojaabel.Telas.Telass;
 
 public class Cliente {
     int id_cliente;
@@ -22,10 +23,12 @@ public class Cliente {
         this.morada = morada;
         this.idade = idade;
          conexao = Conexao.conector();
+        
     }
 
     public Cliente(int id_cliente) {
         this.id_cliente = id_cliente;
+        conexao = Conexao.conector();
     }
 
 
@@ -74,6 +77,7 @@ public class Cliente {
           pst.setString(2, cliente.getMorada());
           pst.setInt(3, cliente.getIdade());
           pst.executeUpdate();
+          pst.close();
           System.out.println("Sucesso em cadastrar");
 
       } catch (Exception erro) {
@@ -86,23 +90,18 @@ public class Cliente {
   
   
   public void excluir(Cliente cliente) {
-       String sql01 = "delete *from cliente where id_cliente =?";
+       String sql = "delete from cliente where id_cliente = ?";
       try {
-          pst= conexao.prepareStatement(sql01);
-          pst.setString(1, Integer.toString(cliente.id_cliente));
-          pst.executeUpdate();
+          pst= conexao.prepareStatement(sql);
+          pst.setInt(1,cliente.getId_cliente());
           int result = pst.executeUpdate();
           if (result >0) {
-                 JOptionPane.showMessageDialog(null, "Atençao","Sucess",JOptionPane.OK_OPTION);
+               JOptionPane.showMessageDialog(null, "Atençao","Sucess",JOptionPane.OK_OPTION);
 
-          } else {
-              System.out.println("não executei a instrução");
-          }
+          }      
           
       } catch (Exception erro) {
-          int resulta = pst.executeUpdate();
-          System.out.println("result"+resulta);
-              JOptionPane.showMessageDialog(null, "Falha Ao Excluir Dados\n"+erro);;
+              JOptionPane.showMessageDialog(null, "Falha Ao Excluir Dados\n"+erro);
               
               System.out.println("erro"+erro);
       }
@@ -121,7 +120,14 @@ public class Cliente {
            pst.setInt(3, cliente.getIdade());
            pst.setInt(4, cliente.getId_cliente());
            pst.executeUpdate();
-         System.out.println("Alterado Com Sucesso");
+           
+           if (rs.next()) {
+                System.out.println("Alterado Com Sucesso");
+              
+          } else {
+               System.out.println("Erro ao Alterar");
+          }
+        
           
       } catch (Exception erro) {
           JOptionPane.showMessageDialog(null, "Falha Ao Alterar Dados\n"+erro);
@@ -129,7 +135,7 @@ public class Cliente {
   
   }
   
-  public void pesquisar(Cliente cliente){
+  public Cliente pesquisar(Cliente cliente){
        String sql = "select *from cliente where id_cliente =?";
       
       try {
@@ -142,12 +148,18 @@ public class Cliente {
               String nome = rs.getString("nome");
               String morada = rs.getString("morada");
               String idade = rs.getString("idade");
+              //setar
+
               System.out.println("-------------------------");
               System.out.println("resultado da pesquisas");
               System.out.println("id:"+id); 
               System.out.println("nome:"+nome);
               System.out.println("morada :"+morada);
               System.out.println("idade:"+idade);
+              Cliente cliente1 = new Cliente(Integer.parseInt(id), nome, morada, Integer.parseInt(idade));
+              Cliente modelo;
+              modelo =cliente1;
+              return  modelo;
           } else {
               System.out.println("usuario não existe");
           }
@@ -156,7 +168,7 @@ public class Cliente {
            JOptionPane.showMessageDialog(null, "Falha Ao Pesquisar Dados\n"+erro);
       }
       
-  
+     return null;
   }
   
    

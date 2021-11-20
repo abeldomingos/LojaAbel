@@ -16,7 +16,7 @@ public class LojaAbel {
     public static void main(String[] args) {
         // TODO code application logic here
        
-        Cliente cliente = new Cliente(2, "Mingo", "Zango", 19);
+        Cliente cliente = new Cliente(16, "Fatima", "Rangel", 10);
         
         // Meus Metodos
         

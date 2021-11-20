@@ -5,10 +5,15 @@
  */
 package lojaabel.Telas;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 import lojaabel.Cliente;
+import lojaabel.Conexao;
 
 /**
  *
@@ -16,12 +21,17 @@ import lojaabel.Cliente;
  */
 public class Telass extends javax.swing.JFrame {
 
+    
+    
+   Connection conexao = null;
+   PreparedStatement pst =null;
+   ResultSet rs = null;
     /**
      * Creates new form Telass
      */
     public Telass() {
         initComponents();                
-        
+         conexao = Conexao.conector();
         
     }
 
@@ -71,10 +81,20 @@ public class Telass extends javax.swing.JFrame {
 
         jButtoneditar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtoneditar.setText("Editar");
+        jButtoneditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtoneditarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtoneditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 130, 50));
 
         jButtonpesquisar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonpesquisar.setText("Pesquisar");
+        jButtonpesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonpesquisarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonpesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 130, 50));
 
         jLabelid_cliente.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -158,6 +178,33 @@ public class Telass extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldnome2ActionPerformed
 
+    private void jButtoneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoneditarActionPerformed
+            // TODO add your handling code here:
+            Cliente cliente  = new Cliente(Integer.parseInt(jTextFieldid_cliente1.getText()));
+            cliente.editar(cliente);
+            
+            // String sql = "update cliente set nome=?, morada=?, idade=? where id_cliente = ?";
+        
+    }//GEN-LAST:event_jButtoneditarActionPerformed
+
+    private void jButtonpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonpesquisarActionPerformed
+        // TODO add your handling code here:
+       Cliente cliente = new Cliente(Integer.parseInt(jTextFieldid_cliente1.getText()));
+       Cliente modelo;
+      modelo= cliente.pesquisar(cliente);
+        if (modelo ==null) {
+            System.out.println("modelo vazio");
+        } else {
+            this.jTextFieldnome2.setText(modelo.getNome());
+           this.jTextFieldid_idade.setText(Integer.toString(modelo.getIdade()));
+           this.jTextFieldmorada.setText((modelo.getMorada()));
+        }
+       
+       
+      
+    }//GEN-LAST:event_jButtonpesquisarActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -193,6 +240,8 @@ public class Telass extends javax.swing.JFrame {
         });
     }
 
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtoncadastrar;
     private javax.swing.JButton jButtoneditar;
@@ -206,6 +255,6 @@ public class Telass extends javax.swing.JFrame {
     public static javax.swing.JTextField jTextFieldid_cliente1;
     private javax.swing.JTextField jTextFieldid_idade;
     private javax.swing.JTextField jTextFieldmorada;
-    private javax.swing.JTextField jTextFieldnome2;
+    public static javax.swing.JTextField jTextFieldnome2;
     // End of variables declaration//GEN-END:variables
 }
