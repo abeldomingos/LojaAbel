@@ -140,7 +140,7 @@ public class Telass extends javax.swing.JFrame {
     private void jButtonexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonexcluirActionPerformed
         // TODO add your handling code here:
        
-        }
+        
        
     }//GEN-LAST:event_jButtonexcluirActionPerformed
 
